@@ -16,49 +16,58 @@ const pool = new Pool({
     port: 5432,
 });
 
-function calcularIdade(data_nascimento) {
+function calculaidade(data_nascimento) {
     const dataAtual = new Date();
+    const dataNascimento = new Date(data_nascimento);
 
-    let idade = dataAtual.getFullYear() - data_nascimento.getFullYear();
+    let idade = dataAtual.getFullYear() - dataNascimento.getFullYear();
 
-    const mesAtual = dataAtual.getMonth();
-
-    const mesNascimento = data_nascimento.getMonth();
-
-    if (mesNascimento > mesAtual || (mesNascimento === mesAtual && dataAtual.getDate() < data_nascimento.getDate())) {
+    if (dataAtual.getMonth() < dataNascimento.getMonth() || dataAtual.getMonth() == dataNascimento.getMonth() && dataAtual.getDate() < dataNascimento.getDate()) {
         idade--;
     }
+
     return idade;
 }
 
-function signocalula(mes, dia) {
-
-    if ((mes == 1 && dia >= 20) || (mes == 2 && dia <= 18)) {
-        return 'Aquário ♒';
-    } else if ((mes == 2 && dia >= 19) || (mes == 3 && dia <= 20)) {
-        return 'Peixes ♓';
-    } else if ((mes == 3 && dia >= 21) || (mes == 4 && dia <= 19)) {
-        return 'Áries ♈';
-    } else if ((mes == 4 && dia >= 20) || (mes == 5 && dia <= 20)) {
-        return 'Touro ♉';
-    } else if ((mes == 5 && dia >= 21) || (mes == 6 && dia <= 20)) {
-        return 'Gêmeos ♊';
-    } else if ((mes == 6 && dia >= 21) || (mes == 7 && dia <= 22)) {
-        return 'Câncer ♋';
-    } else if ((mes == 7 && dia >= 23) || (mes == 8 && dia <= 22)) {
-        return 'Leão ♌';
-    } else if ((mes == 8 && dia >= 23) || (mes == 9 && dia <= 22)) {
-        return 'Virgem ♍';
-    } else if ((mes == 9 && dia >= 23) || (mes == 10 && dia <= 22)) {
-        return 'Libra ♎';
-    } else if ((mes == 10 && dia >= 23) || (mes == 11 && dia <= 21)) {
-        return 'Escorpião ♏';
-    } else if ((mes == 11 && dia >= 22) || (mes == 12 && dia <= 21)) {
-        return 'Sagitário ♐';
-    } else {
-        return 'Capricórnio ♑';
+function signocalula(data_nascimento, dataAtual) {
+    if(data_nascimento == 1 && dataAtual >= 20 || data_nascimento == 2 && dataAtual <= 18){
+        return 'Aquário♒';
+    }
+    if(data_nascimento == 2 && dataAtual >= 19 || data_nascimento == 3 && dataAtual <= 20){
+        return 'Peixes♓';
+    }
+    if(data_nascimento == 3 && dataAtual >= 21 || data_nascimento == 4 && dataAtual <= 19){
+        return 'Áries♈';
+    }
+    if(data_nascimento == 4 && dataAtual >= 20 || data_nascimento == 5 && dataAtual <= 20){
+        return 'Touro♉';
+    }
+    if(data_nascimento == 5 && dataAtual >= 21 || data_nascimento == 6 && dataAtual <= 21){
+        return 'Gêmeos♊';
+    }
+    if(data_nascimento == 6 && dataAtual >= 22 || data_nascimento == 7 && dataAtual <= 22){
+        return 'Câncer♋';
+    }
+    if(data_nascimento == 7 && dataAtual >= 23 || data_nascimento == 8 && dataAtual <= 22){
+        return 'Leão♌';
+    }
+    if(data_nascimento == 8 && dataAtual >= 23 || data_nascimento == 9 && dataAtual <= 22){
+        return 'Virgem♍';
+    }
+    if(data_nascimento == 9 && dataAtual >= 23 || data_nascimento == 10 && dataAtual <= 22){
+        return 'Libra♎';
+    }
+    if(data_nascimento == 10 && dataAtual >= 23 || data_nascimento == 11 && dataAtual <= 21){
+        return 'Escorpião♏';
+    }
+    if(data_nascimento == 11 && dataAtual >= 22 || data_nascimento == 12 && dataAtual <= 21){
+        return 'Sagitário♐';
+    }
+    if(data_nascimento == 12 && dataAtual >= 22 || data_nascimento == 1 && dataAtual <= 19){
+        return 'Capricórnio♑';
     }
 }
+
 
 app.use(express.json());
 
@@ -92,7 +101,7 @@ app.post('/usuarios', async (req, res) => {
 
         const data_Nascimento = new Date(data_nascimento);
 
-        const idade = calcularIdade(data_Nascimento);
+        const idade = calculaidade(data_Nascimento);
         const signo = signocalula(data_Nascimento.getMonth() + 1, data_Nascimento.getDate());
 
 
