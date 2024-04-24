@@ -1,12 +1,12 @@
-API Usuarios Node.js, Express e PostgreSQL, com calculo de idade e signo.
+# API Usuarios Node.js, Express e PostgreSQL, com calculo de idade e signo.
 Este é um exemplo de uma API web construída com Node.js, Express e PostgreSQL para gerenciar usuários. A API permite a criação, leitura, atualização e exclusão (CRUD) de usuários em um banco de dados PostgreSQL.
 
-Configuração do Ambiente
+## Configuração do Ambiente
 Certifique-se de ter o Node.js e o PostgreSQL instalados em sua máquina.
 
 Instale as dependências do projeto: npm install express pg
 
-Configure as variáveis de ambiente:
+## Configure as variáveis de ambiente:
 
 PORT: Porta em que o servidor será executado.
 Dados de acesso ao banco de dados PostgreSQL (user, host, database, password, port).
@@ -21,7 +21,7 @@ Os comandos encontram-se dentro da pasta db, no arquivo script.sql.
 Aviso Importante
 Os dados de acesso ao banco de dados estão expostos neste projeto, pois é destinado a fins educacionais como projeto de estudo para alunos. Certifique-se de não utilizar informações sensíveis neste contexto.
 
-Endpoints
+## Endpoints
 POST /usuarios: Adiciona um novo usuário.
 
 Corpo da requisição: { "nome": "Nome do Usuário", "email": "email@exemplo.com" }
