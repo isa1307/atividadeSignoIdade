@@ -6,43 +6,29 @@ Certifique-se de ter o Node.js e o PostgreSQL instalados em sua máquina.
 
 Instale as dependências do projeto: npm install express pg
 
-## Configure as variáveis de ambiente:
+## Configuração do Projeto
+Clonar o repositório:
+https://github.com/isa1307/atividadeSignoIdade.git
 
-PORT: Porta em que o servidor será executado.
-Dados de acesso ao banco de dados PostgreSQL (user, host, database, password, port).
-Comandos iniciais para criação do projeto
-npm init -y
-npm install express pg
-npm install -g nodemon
-Criando o Banco de Dados
-1 . Antes de iniciar o servidor, é necessário criar o banco de dados no PostgreSQL. Você pode fazer isso executando os comandos no console do PostgreSQL ou em uma ferramenta de administração:
+### Instalar dependências:
+npm i 
 
-Os comandos encontram-se dentro da pasta db, no arquivo script.sql.
-Aviso Importante
-Os dados de acesso ao banco de dados estão expostos neste projeto, pois é destinado a fins educacionais como projeto de estudo para alunos. Certifique-se de não utilizar informações sensíveis neste contexto.
+### Configurar o banco de dados:
+Crie um banco de dados PostgreSQL com o nome 'atividade2204':
+CREATE DATABASE atividade2204;
+Ajuste as credenciais do banco de dados no arquivo app.js, se necessário.
+Inicializando o Servidor
+Para iniciar o servidor Express, execute o seguinte comando:
+npm run dev
+O servidor será iniciado na porta 3000 por padrão.
 
-## Endpoints
+Rotas Disponíveis
+GET /usuarios: Retorna todos os usuários cadastrados.
+GET /usuarios/:id: Retorna um usuário específico com base no ID fornecido.
 POST /usuarios: Adiciona um novo usuário.
+PUT /usuarios/:id: Atualiza as informações de um usuário existente.
+DELETE /usuarios/:id: Exclui um usuário com base no ID fornecido.
 
-Corpo da requisição: { "nome": "Nome do Usuário", "email": "email@exemplo.com" }
 
-GET /usuarios: Retorna todos os usuários.
-
-Resposta: { "total": 3, "usuarios": [...] }
-
-PUT /usuarios/:id: Atualiza um usuário existente.
-
-Parâmetros da URL: id do usuário.
-
-Corpo da requisição: { "nome": "Novo Nome", "email": "novoemail@exemplo.com" }
-
-DELETE /usuarios/:id: Exclui um usuário existente.
-
-Parâmetros da URL: id do usuário.
-
-Execução
-Para iniciar o servidor, execute: node nome-do-arquivo.js
-
-O servidor será iniciado na porta especificada.
-
+## O servidor será iniciado na porta especificada.
 Certifique-se de substituir nome-do-arquivo.js pelo nome do arquivo onde o código está localizado.
